@@ -2,26 +2,31 @@ name: CI Github Pages
 on:
   #监听push操作
   push:
-    branches: [main] # 这里只配置了main分支，所以只有推送main分支才会触发以下任务
+    branches: # 这里只配置了main分支，所以只有推送main分支才会触发以下任务
+      - main
     paths-ignore: # 下列文件的变更不触发部署，可以自行添加
       - README.md
 jobs:
   # 任务ID
-  deploy:
+  build-and-deploy:
     # 运行环境
     runs-on: ubuntu-latest
     # 步骤
     steps:
       # 官方action，将代码拉取到虚拟机
-      - name: Checkout  ️ 
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Build   # 安装依赖、打包，如果提前已打包好无需这一步
         uses: actions/setup-node@master
         with:
           node-version: '18.x'
-      - run: yarn install
-      - run: yarn build
+      
+      - name: Install Dependencies
+        run: yarn install
+      
+      - name: Build
+        run: yarn build
 
       - name: Deploy   # 部署
         uses: peaceiris/action-gh-pages@v3
