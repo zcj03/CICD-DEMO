@@ -20,8 +20,8 @@ jobs:
         uses: actions/setup-node@vmaster
         with:
           node-version: '18.x'
-      - run: npm install
-      - run: npm run build
+      - run: yarn install
+      - run: yarn build
 
       - name: Deploy   # 部署
         uses: peaceiris/action-gh-pages@v3
