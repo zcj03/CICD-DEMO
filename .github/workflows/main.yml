@@ -27,8 +27,8 @@ jobs:
         uses: peaceiris/action-gh-pages@v3
         with:
           branch: gh-pages # 部署后提交到那个分支
-          publish_dir: ./dist # 这里填打包好的目录名称
+          publish_dir: dist # 这里填打包好的目录名称
           github_token: ${{ secrets.CICDDEMO }}
           user_name: ${{ secrets.MY_USER_NAME }}
-          user_email: ${{ secrets.MY_USER_EMAIL 
+          user_email: ${{ secrets.MY_USER_EMAIL }}
           commit_message: 自动部署
